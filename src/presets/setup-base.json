@@ -1,0 +1,70 @@
+{
+  "id": "setup-base",
+  "name": "Setup-Base (Habitación Completa Demo)",
+  "version": 1,
+  "room": {
+    "wallHeight": 250,
+    "wallColor": "#f2f3f5",
+    "perimeterLed": true,
+    "vertices": [
+      { "x": 0, "z": 0 },
+      { "x": 215, "z": 0 },
+      { "x": 215, "z": 25 },
+      { "x": 266, "z": 25 },
+      { "x": 266, "z": 177 },
+      { "x": 259, "z": 177 },
+      { "x": 259, "z": 258 },
+      { "x": 115, "z": 258 },
+      { "x": 115, "z": 330 },
+      { "x": 0, "z": 330 }
+    ],
+    "openings": [
+      {
+        "id": "win-north",
+        "wallIndex": 0,
+        "type": "window",
+        "offset": 115,
+        "width": 90,
+        "sillHeight": 89,
+        "height": 135,
+        "hasBlind": true
+      },
+      {
+        "id": "door-south",
+        "wallIndex": 8,
+        "type": "door",
+        "offset": 17,
+        "width": 82,
+        "height": 208
+      }
+    ],
+    "wallFeatures": [
+      {
+        "id": "rad-north",
+        "wallIndex": 0,
+        "type": "radiator",
+        "offset": 121,
+        "width": 78,
+        "height": 58,
+        "bottomY": 14
+      },
+      {
+        "id": "slats-east",
+        "wallIndex": 3,
+        "type": "woodSlats",
+        "offset": 0,
+        "width": 152,
+        "bottomY": 76.6,
+        "topY": 244
+      },
+      {
+        "id": "wardrobe-south",
+        "wallIndex": 6,
+        "type": "builtInWardrobe",
+        "offset": 0,
+        "width": 144,
+        "height": 250
+      }
+    ]
+  }
+}

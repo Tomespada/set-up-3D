@@ -1,0 +1,63 @@
+{
+  "templates": [
+    {
+      "id": "setup-base",
+      "name": "Setup-Base (Con retranqueo y columna)",
+      "wallHeight": 250,
+      "vertices": [
+        { "x": 0, "z": 0 },
+        { "x": 215, "z": 0 },
+        { "x": 215, "z": 25 },
+        { "x": 266, "z": 25 },
+        { "x": 266, "z": 177 },
+        { "x": 259, "z": 177 },
+        { "x": 259, "z": 258 },
+        { "x": 115, "z": 258 },
+        { "x": 115, "z": 330 },
+        { "x": 0, "z": 330 }
+      ],
+      "openings": [
+        { "wallIndex": 0, "type": "window", "offset": 115, "width": 90, "sillHeight": 89, "height": 135 },
+        { "wallIndex": 8, "type": "door", "offset": 17, "width": 82, "height": 208 }
+      ],
+      "wallFeatures": [
+        { "wallIndex": 0, "type": "radiator", "offset": 121, "width": 78, "height": 58, "bottomY": 14 },
+        { "wallIndex": 3, "type": "woodSlats", "offset": 0, "width": 152, "bottomY": 76.6, "topY": 244 }
+      ]
+    },
+    {
+      "id": "rect-standard",
+      "name": "Habitación Rectangular (300 × 350 cm)",
+      "wallHeight": 250,
+      "vertices": [
+        { "x": 0, "z": 0 },
+        { "x": 300, "z": 0 },
+        { "x": 300, "z": 350 },
+        { "x": 0, "z": 350 }
+      ],
+      "openings": [
+        { "wallIndex": 0, "type": "window", "offset": 105, "width": 90, "sillHeight": 89, "height": 135 },
+        { "wallIndex": 2, "type": "door", "offset": 30, "width": 82, "height": 208 }
+      ],
+      "wallFeatures": []
+    },
+    {
+      "id": "l-shape",
+      "name": "Habitación en L (340 × 360 cm)",
+      "wallHeight": 250,
+      "vertices": [
+        { "x": 0, "z": 0 },
+        { "x": 340, "z": 0 },
+        { "x": 340, "z": 220 },
+        { "x": 200, "z": 220 },
+        { "x": 200, "z": 360 },
+        { "x": 0, "z": 360 }
+      ],
+      "openings": [
+        { "wallIndex": 0, "type": "window", "offset": 120, "width": 100, "sillHeight": 89, "height": 135 },
+        { "wallIndex": 4, "type": "door", "offset": 55, "width": 82, "height": 208 }
+      ],
+      "wallFeatures": []
+    }
+  ]
+}

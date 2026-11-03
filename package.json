@@ -1,0 +1,27 @@
+{
+  "name": "setup-3d-designer",
+  "version": "1.0.0",
+  "description": "Diseñador interactivo 3D de habitaciones y setups con editor de planos 2D, catálogo paramétrico y taller de muebles estilo SketchUp.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "security-check": "node scripts/security-check.mjs"
+  },
+  "keywords": [
+    "threejs",
+    "3d-room-planner",
+    "desk-setup",
+    "floor-plan-2d",
+    "furniture-builder",
+    "webgl"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "three": "^0.160.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}

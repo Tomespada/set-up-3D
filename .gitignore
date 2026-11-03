@@ -1,0 +1,21 @@
+# Dependencias
+node_modules/
+
+# Build de producción de Vite
+dist/
+dist-ssr/
+
+# Blindaje contra archivos de entorno, claves o credenciales
+*.local
+.env
+.env.*
+*.key
+*.pem
+*credentials*
+*secret*
+
+# Archivos de sistema y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
