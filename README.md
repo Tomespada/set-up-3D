@@ -1,6 +1,6 @@
 # 🖥️ Setup 3D Studio — Diseñador de Habitaciones y Setups en 3D
 
-👉 **[Abrir Demo Interactiva en 3D (GitHub Pages)](https://tomespada.github.io/set-up-3d/)**
+👉 **[Abrir Demo Interactiva en 3D (GitHub Pages)](https://tomespada.github.io/set-up-3D/)**
 
 Aplicación web interactiva en **Three.js + WebGL** para visualizar, personalizar y diseñar habitaciones y setups de escritorio a escala real (`1 unidad = 1 cm`), con iluminación física, tira LED RGB perimetral, física de superficies, cotas arquitectónicas en tiempo real, editor de planos 2D y creador de muebles 3D a medida por bloques.
 
@@ -50,4 +50,4 @@ npm run security-check
 Este repositorio incluye el flujo de trabajo [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
 1. En GitHub, entra en **Settings → Pages → Build and deployment**.
 2. En **Source**, selecciona **GitHub Actions** (o **Deploy from a branch** → `main` / `/ (root)`).
-3. La aplicación quedará publicada en `https://tomespada.github.io/set-up-3d/`.
+3. La aplicación quedará publicada en `https://tomespada.github.io/set-up-3D/`.
