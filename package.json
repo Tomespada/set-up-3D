@@ -1,7 +1,7 @@
 {
   "name": "setup-3d-designer",
   "version": "1.0.0",
-  "description": "Diseñador interactivo 3D de habitaciones y setups con editor de planos 2D, catálogo paramétrico y taller de muebles estilo SketchUp.",
+  "description": "Diseñador interactivo 3D de habitaciones y setups con editor de planos 2D, catálogo paramétrico y creador de muebles a medida.",
   "type": "module",
   "scripts": {
     "dev": "vite",

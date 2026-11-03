@@ -697,12 +697,12 @@
     </div>
   </div>
 
-  <!-- MODAL: TALLER DE MUEBLES 3D (ESTILO SKETCHUP) -->
+  <!-- MODAL: CREADOR DE MUEBLES 3D POR BLOQUES -->
   <div id="workshop-modal" class="studio-modal">
     <div class="modal-box" style="width: min(980px, 96vw);">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1px solid var(--border-color); padding-bottom:10px;">
         <div>
-          <h3 style="font-size:16px; color:var(--accent);">🛠️ Taller de Muebles 3D (Estilo SketchUp por Bloques y Extrusión)</h3>
+          <h3 style="font-size:16px; color:var(--accent);">🛠️ Creador de Muebles 3D a Medida</h3>
           <p style="font-size:11.5px; color:var(--text-muted);">Ensambla tableros, patas, cajones y divisiones con medidas exactas en cm. Insértalo en tu cuarto o expórtalo en .GLB.</p>
         </div>
         <button class="close-inspector" id="closeWorkshopBtn" title="Cerrar">✕</button>
@@ -915,7 +915,7 @@
         <div class="row" style="gap: 6px;">
           <select id="sceneItemSelect" style="flex: 1; max-width: 100%;"></select>
         </div>
-        <button id="tabOpenWorkshopBtn" class="btn-primary" style="width: 100%;">🛠️ Taller de Muebles 3D (Estilo SketchUp)</button>
+        <button id="tabOpenWorkshopBtn" class="btn-primary" style="width: 100%;">🛠️ Creador de Muebles 3D a Medida</button>
       </div>
 
       <div class="control-group">
@@ -4913,14 +4913,10 @@
       showToast("📷 Captura PNG descargada");
     });
 
-    const STORAGE_KEY = 'setup3d_layout_v6';
-    document.getElementById('saveLayoutBtn').addEventListener('click', () => {
-      const data = typeof serializeProjectData === 'function' ? serializeProjectData() : { finishes: finishState };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      showToast("💾 Diseño completo guardado en el navegador");
-    });
+    const STORAGE_KEY = 'setup3d_layout_v7';
+    try { localStorage.removeItem('setup3d_layout_v6'); } catch (_) {}
 
-    document.getElementById('resetLayoutBtn').addEventListener('click', () => {
+    function restoreFullSetupBase() {
       localStorage.removeItem(STORAGE_KEY);
       if (window.location.hash) window.history.replaceState(null, '', window.location.pathname);
       if (typeof rebuildRoomGeometry === 'function' && typeof ROOM_TEMPLATES !== 'undefined') {
@@ -4945,8 +4941,16 @@
       selectObject(null);
       applyEnvironmentPreset(75, '#ff8c1a', '#daf0ff', false, 88, 60);
       moveCameraTo(62, 132, 225, 235, 108, 120, 'camPhoto');
-      showToast("↺ Setup-Base restaurado por completo");
+      showToast("↺ Setup-Base restaurado con todos sus elementos");
+    }
+
+    document.getElementById('saveLayoutBtn').addEventListener('click', () => {
+      const data = typeof serializeProjectData === 'function' ? serializeProjectData() : { finishes: finishState };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      showToast("💾 Diseño completo guardado en el navegador");
     });
+
+    document.getElementById('resetLayoutBtn').addEventListener('click', restoreFullSetupBase);
 
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
@@ -5110,7 +5114,7 @@
 
     document.getElementById('welcomeExploreBtn')?.addEventListener('click', () => {
       welcomeModal.classList.remove('visible');
-      showToast("🖥️ Explorando Setup-Base");
+      restoreFullSetupBase();
     });
     document.getElementById('welcomeEmptyBtn')?.addEventListener('click', () => {
       welcomeModal.classList.remove('visible');
@@ -5576,22 +5580,24 @@
         }
 
         // Paneles de listones de madera en esta pared
-        wallEls.filter(e => e.type === 'slats').forEach(sl => {
-          const sOff = Math.max(0, Math.min(len - 10, sl.offset));
-          const sWid = Math.max(10, Math.min(len - sOff, sl.width));
-          const slatBottomY = 76.2;
-          const slatH = Math.max(40, (wallHeight - 2) - slatBottomY);
-          const slatGrp = new THREE.Group();
-          slatGrp.add(createRounded(sWid, slatH, 1.0, 0.2, materials.slatBack, -sWid / 2, slatBottomY, -1.0));
-          for (let x = -sWid / 2 + 1.5; x <= sWid / 2 - 2.5; x += 4.15) {
-            slatGrp.add(createRounded(2.6, slatH, 1.8, 0.8, materials.slatWood, x, slatBottomY, -2.4, 3));
-          }
-          const cx = p1.x + ux * (sOff + sWid / 2);
-          const cz = p1.y + uy * (sOff + sWid / 2);
-          slatGrp.position.set(cx, 0, cz);
-          slatGrp.rotation.y = -angle;
-          segGroup.add(slatGrp);
-        });
+        if (!(floorPts.length === 10 && i === 3)) {
+          wallEls.filter(e => e.type === 'slats').forEach(sl => {
+            const sOff = Math.max(0, Math.min(len - 10, sl.offset));
+            const sWid = Math.max(10, Math.min(len - sOff, sl.width));
+            const slatBottomY = 76.2;
+            const slatH = Math.max(40, (wallHeight - 2) - slatBottomY);
+            const slatGrp = new THREE.Group();
+            slatGrp.add(createRounded(sWid, slatH, 1.0, 0.2, materials.slatBack, -sWid / 2, slatBottomY, 0.2));
+            for (let x = -sWid / 2 + 1.5; x <= sWid / 2 - 2.5; x += 4.15) {
+              slatGrp.add(createRounded(2.6, slatH, 1.8, 0.8, materials.slatWood, x, slatBottomY, 1.0, 3));
+            }
+            const cx = p1.x + ux * (sOff + sWid / 2);
+            const cz = p1.y + uy * (sOff + sWid / 2);
+            slatGrp.position.set(cx, 0, cz);
+            slatGrp.rotation.y = -angle;
+            segGroup.add(slatGrp);
+          });
+        }
 
         const seg = { group: segGroup, p1: p1.clone(), nx, nz: ny, idx: i, decor: [], currentScaleY: 1.0 };
         wallSegments.push(seg);
@@ -5621,16 +5627,27 @@
         }
       }
 
-      // 6. Recalcular WALL_SIDES dinámicamente según la normal exterior de cada pared
-      let centerRoomX = 0, centerRoomZ = 0;
-      floorPts.forEach(p => { centerRoomX += p.x; centerRoomZ += p.y; });
-      centerRoomX /= floorPts.length;
-      centerRoomZ /= floorPts.length;
+      // 6. Recalcular WALL_SIDES y re-adjuntar armario/listones si es el plano de 10 muros de Setup-Base
+      if (floorPts.length === 10 && segByIdx[6] && segByIdx[3]) {
+        segByIdx[6].group.add(wardrobeGroup);
+        segByIdx[3].group.add(slatsBack);
+        WALL_SIDES = [
+          { indices: [0], test: (cam) => cam.z < -2 },
+          { indices: [1, 2, 3, 4, 5], test: (cam) => cam.x > 266 },
+          { indices: [6, 7, 8], test: (cam) => cam.z > 265 },
+          { indices: [9], test: (cam) => cam.x < -2 }
+        ];
+      } else {
+        let centerRoomX = 0, centerRoomZ = 0;
+        floorPts.forEach(p => { centerRoomX += p.x; centerRoomZ += p.y; });
+        centerRoomX /= floorPts.length;
+        centerRoomZ /= floorPts.length;
 
-      WALL_SIDES = wallSegments.map(s => ({
-        indices: [s.idx],
-        test: (cam) => ((cam.x - centerRoomX) * s.nx + (cam.z - centerRoomZ) * s.nz) > 75
-      }));
+        WALL_SIDES = wallSegments.map(s => ({
+          indices: [s.idx],
+          test: (cam) => ((cam.x - centerRoomX) * s.nx + (cam.z - centerRoomZ) * s.nz) > 75
+        }));
+      }
 
       // 7. Reconstruir cotas de la habitación
       clearGroup(roomCotas);
@@ -5654,7 +5671,7 @@
     });
 
     // ==========================================
-    // 18.d TALLER DE MUEBLES 3D (ESTILO SKETCHUP POR BLOQUES Y EXTRUSIÓN)
+    // 18.d CREADOR DE MUEBLES 3D A MEDIDA (POR BLOQUES)
     // ==========================================
     const wsCanvas = document.getElementById('workshopCanvas');
     let wsRenderer = null, wsScene = null, wsCam = null, wsControls = null, wsPreviewRoot = null;
@@ -6066,22 +6083,19 @@
       jsonFileInput.value = '';
     });
 
-    // Si la URL incluye #setup=..., cargar ese setup compartido directamente; si no, cargar localStorage o mostrar Modal de Bienvenida
+    // Si la URL incluye #setup=..., cargar ese setup compartido directamente; si no, mostrar tu habitación completa directamente
     if (window.location.hash && window.location.hash.startsWith('#setup=')) {
       try {
         const raw = window.location.hash.slice('#setup='.length);
         const sharedData = JSON.parse(decodeURIComponent(atob(raw)));
         applyProjectData(sharedData);
         showToast("🔗 Setup compartido cargado desde el enlace");
-      } catch (_) {
-        welcomeModal?.classList.add('visible');
-      }
+      } catch (_) {}
     } else {
       try {
         const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
         if (saved && saved.version === 2) applyProjectData(saved);
       } catch (_) {}
-      welcomeModal?.classList.add('visible');
     }
 
     // ==========================================

@@ -2,7 +2,7 @@
 
 👉 **[Abrir Demo Interactiva en 3D (GitHub Pages)](https://tomespada.github.io/set-up-3d/)**
 
-Aplicación web interactiva en **Three.js + WebGL** para visualizar, personalizar y diseñar habitaciones y setups de escritorio a escala real (`1 unidad = 1 cm`), con iluminación física, tira LED RGB perimetral, física de superficies, cotas arquitectónicas en tiempo real, editor de planos 2D y taller de muebles a medida estilo SketchUp.
+Aplicación web interactiva en **Three.js + WebGL** para visualizar, personalizar y diseñar habitaciones y setups de escritorio a escala real (`1 unidad = 1 cm`), con iluminación física, tira LED RGB perimetral, física de superficies, cotas arquitectónicas en tiempo real, editor de planos 2D y creador de muebles 3D a medida por bloques.
 
 ---
 
@@ -19,8 +19,8 @@ Aplicación web interactiva en **Three.js + WebGL** para visualizar, personaliza
 3. **Catálogo Completo + Muebles Paramétricos**:
    - Añade escritorios, cajoneras ALEX, estanterías Kallax, camas, armarios, sillas, monitores, PCs, plantas y figuras.
    - Modifica **Ancho × Fondo × Alto (cm)** y acabados de color/madera en tiempo real.
-4. **Taller de Muebles 3D (Estilo SketchUp)**:
-   - Construye muebles propios ensamblando y extruyendo tableros, patas, cajones, divisiones y cilindros con medidas en centímetros.
+4. **Creador de Muebles 3D a Medida**:
+   - Construye muebles propios ensamblando tableros, patas, cajones, divisiones y cilindros con medidas en centímetros.
    - Aplica materiales del proyecto y guárdalos en tu catálogo o expórtalos en `.GLB` / `.JSON`.
 5. **Compartir y Exportar**:
    - **Enlace compartible (URL)** con el estado comprimido de la habitación para enviarlo a cualquier persona con un clic.
